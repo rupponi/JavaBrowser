@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -49,19 +51,20 @@ public class JavaBrowser extends Application implements HyperlinkListener{
         mainPane.setBottom(statLabel);
 
 
-        urlField.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent urlSearch) {
-                String inputURL = urlSearch.getSource().toString().toLowerCase();
+        EventHandler<KeyEvent> keyPressListener = new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent keyPressed) {
                 try {
-                    if (inputURL.startsWith("http://")) {
-                        inputURL = inputURL.substring(7);
-                        editorPane.setPage("http://" + IDN.toASCII(inputURL));
+                    if (keyPressed.getCode() == KeyCode.ENTER) {
+                        String inputURL = urlField.getText().toLowerCase();
+                        System.out.println(inputURL);
                     }
                 } catch (IOException ix) {
                     ix.printStackTrace();
                 }
             }
-        });
+        };
+
+        urlField.addEventHandler(KeyEvent.KEY_PRESSED,keyPressListener);
 
         browserStage.setScene(new Scene(mainPane,500,400));
         browserStage.show();
