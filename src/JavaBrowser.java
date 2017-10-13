@@ -48,6 +48,7 @@ public class JavaBrowser extends Application implements HyperlinkListener{
 
         urlPane.setLeft(urlIn);
         urlPane.setCenter(urlField);
+        urlIn.setTextFill(javafx.scene.paint.Color.WHITE);
 
         mainPane.setStyle("-fx-background-color: linear-gradient(#4d4d4e,#0a0a0a)");
         editorPane.setBackground(Color.GRAY);
