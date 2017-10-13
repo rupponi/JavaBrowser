@@ -56,7 +56,11 @@ public class JavaBrowser extends Application implements HyperlinkListener{
                 try {
                     if (keyPressed.getCode() == KeyCode.ENTER) {
                         String inputURL = urlField.getText().toLowerCase();
-                        System.out.println(inputURL);
+
+                        if (inputURL.startsWith("http://")) {
+                            inputURL = inputURL.substring(7);
+                        }
+                        editorPane.setPage("http://" + IDN.toASCII(inputURL));
                     }
                 } catch (IOException ix) {
                     ix.printStackTrace();
