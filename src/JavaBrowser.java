@@ -1,21 +1,24 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.embed.swing.SwingNode;
 
-import javax.swing.*;
+import javax.swing.JEditorPane;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent;
+
+import java.awt.*;
 import java.io.IOException;
 import java.net.IDN;
+
+
+
 
 
 public class JavaBrowser extends Application implements HyperlinkListener{
@@ -46,9 +49,13 @@ public class JavaBrowser extends Application implements HyperlinkListener{
         urlPane.setLeft(urlIn);
         urlPane.setCenter(urlField);
 
+        mainPane.setStyle("-fx-background-color: linear-gradient(#4d4d4e,#0a0a0a)");
+        editorPane.setBackground(Color.GRAY);
+
         mainPane.setTop(urlPane);
         mainPane.setCenter(editorNode);
         mainPane.setBottom(statLabel);
+
 
 
         EventHandler<KeyEvent> keyPressListener = new EventHandler<KeyEvent>() {
@@ -69,6 +76,7 @@ public class JavaBrowser extends Application implements HyperlinkListener{
         };
 
         urlField.addEventHandler(KeyEvent.KEY_PRESSED,keyPressListener);
+
 
         browserStage.setScene(new Scene(mainPane,500,400));
         browserStage.show();
